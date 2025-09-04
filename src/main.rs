@@ -1,3 +1,5 @@
+mod types;
+
 use clap::{Parser, Subcommand};
 use clio::*;
 
@@ -11,7 +13,7 @@ struct Cli {
 
 #[derive(Subcommand, Debug)]
 enum Commands {
-    /// Encode/decode an asset
+    /// Encode an asset
     Asset {
         /// Input file, use "-" for stdin
         #[clap(value_parser)]
@@ -21,8 +23,18 @@ enum Commands {
         #[clap(value_parser)]
         output: Output,
     },
-    /// Encode/decode a level
+    /// Encode a level
     Level {
+        /// Input file, use "-" for stdin
+        #[clap(value_parser)]
+        input: Input,
+
+        /// Output file
+        #[clap(value_parser)]
+        output: Output,
+    },
+    /// Encode a MIDI file
+    Midi {
         /// Input file, use "-" for stdin
         #[clap(value_parser)]
         input: Input,
