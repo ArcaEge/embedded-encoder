@@ -18,4 +18,4 @@ Levels are designed in LDtk. Use a Tiles-style layer called "Main" for the main 
 
 ### MIDI
 
-Currently only Type-1 MIDI files (which is the most common format anyway) are supported and only tracks 0 (tempo track) and 1 (first instrument track) are parsed. Also, tempo changes are not supported and anything but the first tempo will be ignored. Pitch bends, aftertouch and note velocity are unsupported too along with SMPTE timecode timing (only metrical timing is supported, but almost every MIDI file uses this format).
+~~Currently only Type-1 MIDI files (which is the most common format anyway) are supported and only tracks 0 (tempo track) and 1 (first instrument track) are parsed.~~ Use the `--track 0` argument to parse type 0 MIDI files. Also, tempo changes are not supported and anything but the first tempo will be ignored. Pitch bends, aftertouch and note velocity are unsupported too along with SMPTE timecode timing (only metrical timing is supported, but almost every MIDI file uses this format).

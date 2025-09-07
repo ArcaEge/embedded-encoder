@@ -43,6 +43,10 @@ enum Commands {
     },
     /// Encode a MIDI file
     Midi {
+        /// The index of the instrument track to use
+        #[arg(short, long, default_value_t = 1)]
+        track: u8,
+
         /// Input file
         #[clap(value_parser)]
         input: PathBuf,
@@ -65,8 +69,10 @@ fn main() {
 
         Commands::Level { input, output } => todo!(),
 
-        Commands::Midi { input, output } => {
-            midi::encode_sound(input, output).unwrap_or_else(|e| e.exit())
-        }
+        Commands::Midi {
+            track,
+            input,
+            output,
+        } => midi::encode_sound(track, input, output).unwrap_or_else(|e| e.exit()),
     }
 }

@@ -7,8 +7,7 @@ use std::io::Write;
 use std::path::PathBuf;
 
 /// Encodes the sound
-// TODO: add a way to specify the midi track to use
-pub fn encode_sound(input: PathBuf, output: PathBuf) -> Result<(), Error> {
+pub fn encode_sound(track: u8, input: PathBuf, output: PathBuf) -> Result<(), Error> {
     let midi_bytes = fs::read(&input).map_err(|_| {
         Cli::command().error(
             ErrorKind::Io,
@@ -33,10 +32,12 @@ pub fn encode_sound(input: PathBuf, output: PathBuf) -> Result<(), Error> {
         )
     })?;
 
-    let track1 = smf.tracks.get(1).ok_or_else(|| {
+    let track1 = smf.tracks.get(track as usize).ok_or_else(|| {
         Cli::command().error(
             ErrorKind::InvalidValue,
-            format!("midi file doesn't have track 1, perhaps it is a type 0 file? Use an online converter to convert it to type 1"),
+            format!(
+                "midi file doesn't have track {track}, use --track 0 if this is a type-0 MIDI file"
+            ),
         )
     })?;
 
