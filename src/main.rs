@@ -1,3 +1,5 @@
+mod levels;
+mod midi;
 mod spritesheet;
 mod types;
 
@@ -29,7 +31,7 @@ enum Commands {
         #[clap(value_parser)]
         output: PathBuf,
     },
-    /// Encode a level
+    /// Encode a level - this is currently a work in progress and doesn't work
     Level {
         /// Input file
         #[clap(value_parser)]
@@ -60,7 +62,11 @@ fn main() {
             input,
             output,
         } => spritesheet::encode_spritesheet(height, input, output).unwrap_or_else(|e| e.exit()),
+
         Commands::Level { input, output } => todo!(),
-        Commands::Midi { input, output } => todo!(),
+
+        Commands::Midi { input, output } => {
+            midi::encode_sound(input, output).unwrap_or_else(|e| e.exit())
+        }
     }
 }

@@ -6,5 +6,7 @@ edition = "2024"
 [dependencies]
 clap = { version = "4.5.46", features = ["derive"] }
 image = "0.25.8"
+ldtk_rust = "0.6.0"
+midly = "0.5.3"
 postcard = { version = "1.1.3", features = ["alloc"] }
 serde = { version = "1.0.*", features = ["derive"] }

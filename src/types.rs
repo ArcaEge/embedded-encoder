@@ -22,3 +22,13 @@ pub enum SpritePixel {
     White = 1,
     Transparent = 2,
 }
+
+/// Sound sample
+pub type Sound = Vec<SoundTone>;
+
+/// Tone + length in us
+#[derive(Serialize, Deserialize)]
+pub struct SoundTone {
+    pub freq: f32,
+    pub length_us: u64,
+}

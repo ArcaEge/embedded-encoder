@@ -11,8 +11,6 @@ use std::path::PathBuf;
 
 /// Encodes the spritesheet, not much else to say
 pub fn encode_spritesheet(height: u32, input: PathBuf, output: PathBuf) -> Result<(), Error> {
-    // Cli::command()
-    //     .error(ErrorKind::InvalidValue, "test error")
     let img = ImageReader::open(&input)
         .map_err(|_| {
             Cli::command().error(
